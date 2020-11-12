@@ -1,5 +1,7 @@
 import axios from 'axios';
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {connect} from "react-redux";
+import {loginUser} from '../redux/reducer'
 
 class Auth extends Component {
     constructor(){
@@ -29,7 +31,7 @@ class Auth extends Component {
         const {email, password} = this.state;
         try{
             const user = await axios.post('/auth/login', {email, password})
-            alert(user)
+            this.props.loginUser(user.data)
             this.props.history.push('/feed')
         }
         catch(err) {
@@ -42,7 +44,7 @@ class Auth extends Component {
         const {email, password, username} = this.state;
         try{
             const user = await axios.post('/auth/register', {email, password, username})
-            alert(user)
+            this.props.loginUser(user.data)
             this.props.history.push('/feed')
         }
         catch(err) {
@@ -103,4 +105,6 @@ class Auth extends Component {
     }
 }
 
-export default Auth
+const mapStateToProps = state => state
+
+export default connect(mapStateToProps, {loginUser})(Auth)

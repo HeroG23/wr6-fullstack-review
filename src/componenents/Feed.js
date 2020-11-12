@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux';
 
 class Feed extends Component {
     render() {
         return (
             <div>
-                this is the feed Component
+               {this.props.isLoggedIn ?
+               <div>This is the Feed Component</div>
+               :
+               <div>Welcome, {this.props.user.username} to the Bird Feeder</div>}
             </div>
         )
     }
 }
 
-export default Feed
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps)(Feed)
