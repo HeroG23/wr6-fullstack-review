@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
-const auth = require('./controller/authController');
+const auth = require('./controllers/authController');
 // const post = require('./controller/postController');
 
 const {SESSION_SECRET, SERVER_PORT, CONNECTION_STRING} = process.env
